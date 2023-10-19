@@ -17,6 +17,27 @@ public class Player : MonoBehaviour
         HandleInteractions();
     }
 
+    private void Start()
+    {
+        gameInput.OnInteractAction += GameInput_OnInteractAction;
+    }
+
+    private void GameInput_OnInteractAction(object sender, System.EventArgs e)
+    {
+        Vector2 inputVector = gameInput.GetMovementVectorNormalized();
+        Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
+        if (moveDir != Vector3.zero) { lastInteractDir = moveDir; }
+        //Raycast to detect stuff
+        if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit, interactDistance, countersLayerMask))
+        {
+            //Has Clear Counter
+            if (raycastHit.transform.TryGetComponent(out ClearCounter clearCounter))
+            {
+                clearCounter.Interact();
+            }
+        }
+    }
+
     private void HandleInteractions() {
 
         Vector2 inputVector = gameInput.GetMovementVectorNormalized();
