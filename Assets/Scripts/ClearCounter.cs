@@ -1,30 +1,23 @@
 using UnityEngine;
 using UnityEngine.TerrainUtils;
 
-public class ClearCounter : MonoBehaviour
+public class ClearCounter : MonoBehaviour, IKitchenObjectParent
 {
     [SerializeField] private KiitchenObjectSO kitchenObjectSO;
     [SerializeField] private Transform topSection;
-    [SerializeField] private ClearCounter secondClearCounter;
-    [SerializeField] private bool testing;
 
     private KitchenObject kitchenObject;
 
-    private void Update()
-    {
-        if (testing && Input.GetKeyDown(KeyCode.T)) {
-            if (kitchenObject != null)
-            {
-                kitchenObject.SetClearCounter(secondClearCounter); 
-            }
-        }
-    }
-
-    public void Interact()
+    public void Interact(Player player)
     {
         if(kitchenObject == null) { 
             Transform kitchenObjectTransform = Instantiate(kitchenObjectSO.prefab, topSection);
-            kitchenObjectTransform.GetComponent<KitchenObject>().SetClearCounter(this);
+            kitchenObjectTransform.GetComponent<KitchenObject>().SetKitchenObjectParent(this);
+        }
+        else
+        {
+            //give object to the player
+            kitchenObject.SetKitchenObjectParent(player);
         }
     }
 
