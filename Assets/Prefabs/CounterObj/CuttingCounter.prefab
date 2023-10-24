@@ -111,7 +111,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   topSection: {fileID: 4538226708443028855}
-  cutKitchenObjectSO: {fileID: 11400000, guid: 552b145370340c34681df7fd98a7e51c, type: 2}
+  cuttingRecipeSOArray:
+  - {fileID: 11400000, guid: 005aab5f35912ff4685d8873c193b412, type: 2}
+  - {fileID: 11400000, guid: 9195b7304015b8143acc142a60e1c562, type: 2}
+  - {fileID: 11400000, guid: 0c4367a65faae774db8fd1c957e8df02, type: 2}
 --- !u!1001 &3556870823975626367
 PrefabInstance:
   m_ObjectHideFlags: 0
