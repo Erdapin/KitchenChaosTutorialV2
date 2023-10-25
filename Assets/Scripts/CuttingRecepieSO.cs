@@ -5,5 +5,5 @@ public class CuttingRecepieSO : ScriptableObject
 {
     public KiitchenObjectSO input;
     public KiitchenObjectSO output;
-
+    public int cuttingProgressMax;
 }
